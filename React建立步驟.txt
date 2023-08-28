@@ -1,0 +1,37 @@
+
+//創建vite與開啟環境
+1. 於cmd root目錄中輸入:npm create vite@latest
+2. 依序輸入
+   前該資料夾(後面是project name，可能更動):cd vite-project
+   建立npm(需要花一點時間):npm install
+   建立local host(已經有建立過vite project後，之後只需要打這行就好):npm run dev
+
+3. 後續完成react建置，可以輸入:npm run build
+   就會輸出純粹的HTML和CSS了(在新的dist資料夾內)(要用VScode的golive才能看)
+
+
+//Push到github-page
+4. 於VScode的cmd中輸入(先新增此功能):npm install gh-pages
+5. 在package.json檔案中的"preview"(最下面要加,)下面輸入:"deploy":"gh-pages -d dist"
+6. 於VScode的cmd中輸入:npm run deploy
+7. 去到Github網站的Repo內，可以發現除了有main分支，還有一個gh-pages的分支
+8.  去到Github網站的Repo的setting內的pages，於branch處選取gh-pages的分支，就可以部屬到pages上面了
+
+//修改HTML的絕對路徑
+9.到VScode的vite.congig.js檔案中的export default defineConfig內
+  輸入:base:process.env.NODE_ENV==='production'?'/儲存庫的名稱/':'/',
+note:base就是路徑的跟目錄的意思
+note:npm run dev是開發環境中路徑、npm run build就是產品環境中的路徑
+note:process.env.NODE_ENV將取得NODE開發環境
+note:如果是NODE環境是production，就改為"/儲存庫的名稱/"，若不是production，就改為預設路徑
+10.之後就要重新編譯以及部屬一次，輸入：npm run build，再輸入npm run deploy
+
+
+
+//建立元件
+1. 在src資料夾中建立一個.jsx檔案
+2.  以function 開頭，並且function name要大寫開頭
+3. return jsx scritp，如<div>我是元件</div>
+4. function外面的最後面加上export default function name
+5. 回到main.jsx檔案中，匯入元件，在上方import地方輸入:import 元件名稱 from '元件路徑'
+6. 就可以在下面的ReactDOM內加上<元件名稱/>了
